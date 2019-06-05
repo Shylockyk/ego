@@ -23,12 +23,12 @@ public class TbItemDubboServiceImpl implements TbItemDubboService {
     @Override
     public EasyUIDataGrid show(int page, int rows) {
 
-        // 查询全部
-        List<TbItem> tbItemList = tbItemMapper.selectAll();
-
         // 分页代码
         // 设置分页条件
         PageHelper.startPage(page, rows);
+        // 查询全部
+        List<TbItem> tbItemList = tbItemMapper.selectAll();
+
 
         // 放入到实体类
         PageInfo<TbItem> pageInfo = new PageInfo<>(tbItemList);

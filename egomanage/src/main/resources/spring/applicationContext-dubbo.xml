@@ -6,11 +6,14 @@
 
 
     <!--给当前Provider自定义一个名称-->
-    <dubbo:application name="ego-consumer"/>
+    <dubbo:application name="ego-consumer">
+        <dubbo:parameter key="qos.port" value="33333"/>
+    </dubbo:application>
 
     <!--<dubbo:config-center address="zookeeper://192.168.56.107:2181"/>-->
     <!--配置注册中心-->
-    <dubbo:registry address="zookeeper://192.168.56.103:2181" simplified="true" client="curator"/>
+    <!--192.168.56.103 172.16.2.128-->
+    <dubbo:registry address="zookeeper://172.16.2.128:2181" simplified="true" client="curator"/>
 
     <!--<bean id="dubboServiceImpl" class="com.shylock.service.impl.DemoServiceImpl"/>
 

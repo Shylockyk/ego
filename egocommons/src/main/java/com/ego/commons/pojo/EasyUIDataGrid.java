@@ -1,12 +1,13 @@
 package com.ego.commons.pojo;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * @Author: yk
  * @Date: 2019/6/4 21:37
  */
-public class EasyUIDataGrid {
+public class EasyUIDataGrid implements Serializable {
 
     /**
      * 当前页显示数据
