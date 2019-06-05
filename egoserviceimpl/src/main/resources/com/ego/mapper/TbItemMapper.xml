@@ -2,37 +2,33 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ego.mapper.TbItemMapper">
   <resultMap id="BaseResultMap" type="com.ego.pojo.TbItem">
-    <id column="tb_item_id" jdbcType="BIGINT" property="id" />
-    <result column="tb_item_title" jdbcType="VARCHAR" property="title" />
-    <result column="tb_item_sell_point" jdbcType="VARCHAR" property="sellPoint" />
-    <result column="tb_item_price" jdbcType="BIGINT" property="price" />
-    <result column="tb_item_num" jdbcType="INTEGER" property="num" />
-    <result column="tb_item_barcode" jdbcType="VARCHAR" property="barcode" />
-    <result column="tb_item_image" jdbcType="VARCHAR" property="image" />
-    <result column="tb_item_cid" jdbcType="BIGINT" property="cid" />
-    <result column="tb_item_status" jdbcType="TINYINT" property="status" />
-    <result column="tb_item_created" jdbcType="TIMESTAMP" property="created" />
-    <result column="tb_item_updated" jdbcType="TIMESTAMP" property="updated" />
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="sell_point" jdbcType="VARCHAR" property="sellPoint" />
+    <result column="price" jdbcType="BIGINT" property="price" />
+    <result column="num" jdbcType="INTEGER" property="num" />
+    <result column="barcode" jdbcType="VARCHAR" property="barcode" />
+    <result column="image" jdbcType="VARCHAR" property="image" />
+    <result column="cid" jdbcType="BIGINT" property="cid" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="created" jdbcType="TIMESTAMP" property="created" />
+    <result column="updated" jdbcType="TIMESTAMP" property="updated" />
   </resultMap>
   <sql id="Base_Column_List">
-    tb_item.id as tb_item_id, tb_item.title as tb_item_title, tb_item.sell_point as tb_item_sell_point, 
-    tb_item.price as tb_item_price, tb_item.num as tb_item_num, tb_item.barcode as tb_item_barcode, 
-    tb_item.image as tb_item_image, tb_item.cid as tb_item_cid, tb_item.`status` as `tb_item_status`, 
-    tb_item.created as tb_item_created, tb_item.updated as tb_item_updated
+    id, title, sell_point, price, num, barcode, image, cid, `status`, created, updated
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from tb_item tb_item
-    where tb_item.id = #{id,jdbcType=BIGINT}
+    from tb_item
+    where id = #{id,jdbcType=BIGINT}
   </select>
 
-  <select id="selectAll" resultMap="BaseResultMap">
+  <select id="selectByAll" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
-    from tb_item tb_item
+    from tb_item
   </select>
-
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from tb_item
     where id = #{id,jdbcType=BIGINT}

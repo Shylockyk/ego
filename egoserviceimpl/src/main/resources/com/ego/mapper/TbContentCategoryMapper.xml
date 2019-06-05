@@ -2,26 +2,23 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ego.mapper.TbContentCategoryMapper">
   <resultMap id="BaseResultMap" type="com.ego.pojo.TbContentCategory">
-    <id column="tb_content_category_id" jdbcType="BIGINT" property="id" />
-    <result column="tb_content_category_parent_id" jdbcType="BIGINT" property="parentId" />
-    <result column="tb_content_category_name" jdbcType="VARCHAR" property="name" />
-    <result column="tb_content_category_status" jdbcType="INTEGER" property="status" />
-    <result column="tb_content_category_sort_order" jdbcType="INTEGER" property="sortOrder" />
-    <result column="tb_content_category_is_parent" jdbcType="BIT" property="isParent" />
-    <result column="tb_content_category_created" jdbcType="TIMESTAMP" property="created" />
-    <result column="tb_content_category_updated" jdbcType="TIMESTAMP" property="updated" />
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="parent_id" jdbcType="BIGINT" property="parentId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="sort_order" jdbcType="INTEGER" property="sortOrder" />
+    <result column="is_parent" jdbcType="BIT" property="isParent" />
+    <result column="created" jdbcType="TIMESTAMP" property="created" />
+    <result column="updated" jdbcType="TIMESTAMP" property="updated" />
   </resultMap>
   <sql id="Base_Column_List">
-    tb_content_category.id as tb_content_category_id, tb_content_category.parent_id as tb_content_category_parent_id, 
-    tb_content_category.`name` as `tb_content_category_name`, tb_content_category.`status` as `tb_content_category_status`, 
-    tb_content_category.sort_order as tb_content_category_sort_order, tb_content_category.is_parent as tb_content_category_is_parent, 
-    tb_content_category.created as tb_content_category_created, tb_content_category.updated as tb_content_category_updated
+    id, parent_id, `name`, `status`, sort_order, is_parent, created, updated
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from tb_content_category tb_content_category
-    where tb_content_category.id = #{id,jdbcType=BIGINT}
+    from tb_content_category
+    where id = #{id,jdbcType=BIGINT}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from tb_content_category

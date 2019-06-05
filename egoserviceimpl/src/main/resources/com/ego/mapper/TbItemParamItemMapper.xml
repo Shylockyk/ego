@@ -2,28 +2,27 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ego.mapper.TbItemParamItemMapper">
   <resultMap id="BaseResultMap" type="com.ego.pojo.TbItemParamItem">
-    <id column="tb_item_param_item_id" jdbcType="BIGINT" property="id" />
-    <result column="tb_item_param_item_item_id" jdbcType="BIGINT" property="itemId" />
-    <result column="tb_item_param_item_created" jdbcType="TIMESTAMP" property="created" />
-    <result column="tb_item_param_item_updated" jdbcType="TIMESTAMP" property="updated" />
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="item_id" jdbcType="BIGINT" property="itemId" />
+    <result column="created" jdbcType="TIMESTAMP" property="created" />
+    <result column="updated" jdbcType="TIMESTAMP" property="updated" />
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.ego.pojo.TbItemParamItem">
-    <result column="tb_item_param_item_param_data" jdbcType="LONGVARCHAR" property="paramData" />
+    <result column="param_data" jdbcType="LONGVARCHAR" property="paramData" />
   </resultMap>
   <sql id="Base_Column_List">
-    tb_item_param_item.id as tb_item_param_item_id, tb_item_param_item.item_id as tb_item_param_item_item_id, 
-    tb_item_param_item.created as tb_item_param_item_created, tb_item_param_item.updated as tb_item_param_item_updated
+    id, item_id, created, updated
   </sql>
   <sql id="Blob_Column_List">
-    tb_item_param_item.param_data as tb_item_param_item_param_data
+    param_data
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
     select 
     <include refid="Base_Column_List" />
     ,
     <include refid="Blob_Column_List" />
-    from tb_item_param_item tb_item_param_item
-    where tb_item_param_item.id = #{id,jdbcType=BIGINT}
+    from tb_item_param_item
+    where id = #{id,jdbcType=BIGINT}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from tb_item_param_item

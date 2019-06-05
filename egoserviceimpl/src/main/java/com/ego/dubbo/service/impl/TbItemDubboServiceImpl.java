@@ -6,7 +6,6 @@ import com.ego.mapper.TbItemMapper;
 import com.ego.pojo.TbItem;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -15,7 +14,7 @@ import java.util.List;
  * @Author: yk
  * @Date: 2019/6/4 21:41
  */
-@Service
+
 public class TbItemDubboServiceImpl implements TbItemDubboService {
 
     @Resource

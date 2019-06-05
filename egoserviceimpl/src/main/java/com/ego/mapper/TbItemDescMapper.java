@@ -3,19 +3,9 @@ package com.ego.mapper;
 import com.ego.pojo.TbItemDesc;
 import org.springframework.stereotype.Repository;
 
+/**
+ * TbItemDescMapper继承基类
+ */
 @Repository
-public interface TbItemDescMapper {
-    int deleteByPrimaryKey(Long itemId);
-
-    int insert(TbItemDesc record);
-
-    int insertSelective(TbItemDesc record);
-
-    TbItemDesc selectByPrimaryKey(Long itemId);
-
-    int updateByPrimaryKeySelective(TbItemDesc record);
-
-    int updateByPrimaryKeyWithBLOBs(TbItemDesc record);
-
-    int updateByPrimaryKey(TbItemDesc record);
+public interface TbItemDescMapper extends MyBatisBaseDao<TbItemDesc, Long> {
 }

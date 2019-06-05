@@ -8,4 +8,7 @@
             <!--<property name="dialect" value="mysql"/>-->
         </plugin>
     </plugins>
+    <mappers>
+        <package name="classpath:com.ego.mapper"/>
+    </mappers>
 </configuration>

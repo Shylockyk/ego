@@ -3,18 +3,19 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://dubbo.apache.org/schema/dubbo"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://dubbo.apache.org/schema/dubbo http://dubbo.apache.org/schema/dubbo/dubbo.xsd">
 
-
-
     <!--给当前Provider自定义一个名称-->
     <dubbo:application name="ego-provider"/>
 
     <!--<dubbo:config-center address="zookeeper://192.168.56.107:2181"/>-->
     <!--配置注册中心-->
-    <dubbo:registry address="zookeeper://192.168.56.103:2181" simplified="true" client="curator"/>
+    <!--192.168.56.103 172.16.2.128-->
+    <dubbo:registry address="zookeeper://172.16.2.128:2181" simplified="true" client="curator"/>
 
-
+    <!--注册功能-->
+    <dubbo:service interface="com.ego.dubbo.service.TbItemDubboService" ref="tbItemDubboService"/>
+    <bean id="tbItemDubboService" class="com.ego.dubbo.service.impl.TbItemDubboServiceImpl"/>
     <!-- 配置调用端口 -->
     <dubbo:protocol name="dubbo" port="20880"/>
 
-    <import resource="classpath:META-INF/spring/applicationContext-mybatis.xml"/>
+    <import resource="classpath:applicationContext-mybatis.xml"/>
 </beans>

@@ -2,26 +2,23 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ego.mapper.TbItemCatMapper">
   <resultMap id="BaseResultMap" type="com.ego.pojo.TbItemCat">
-    <id column="tb_item_cat_id" jdbcType="BIGINT" property="id" />
-    <result column="tb_item_cat_parent_id" jdbcType="BIGINT" property="parentId" />
-    <result column="tb_item_cat_name" jdbcType="VARCHAR" property="name" />
-    <result column="tb_item_cat_status" jdbcType="INTEGER" property="status" />
-    <result column="tb_item_cat_sort_order" jdbcType="INTEGER" property="sortOrder" />
-    <result column="tb_item_cat_is_parent" jdbcType="BIT" property="isParent" />
-    <result column="tb_item_cat_created" jdbcType="TIMESTAMP" property="created" />
-    <result column="tb_item_cat_updated" jdbcType="TIMESTAMP" property="updated" />
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="parent_id" jdbcType="BIGINT" property="parentId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="sort_order" jdbcType="INTEGER" property="sortOrder" />
+    <result column="is_parent" jdbcType="BIT" property="isParent" />
+    <result column="created" jdbcType="TIMESTAMP" property="created" />
+    <result column="updated" jdbcType="TIMESTAMP" property="updated" />
   </resultMap>
   <sql id="Base_Column_List">
-    tb_item_cat.id as tb_item_cat_id, tb_item_cat.parent_id as tb_item_cat_parent_id, 
-    tb_item_cat.`name` as `tb_item_cat_name`, tb_item_cat.`status` as `tb_item_cat_status`, 
-    tb_item_cat.sort_order as tb_item_cat_sort_order, tb_item_cat.is_parent as tb_item_cat_is_parent, 
-    tb_item_cat.created as tb_item_cat_created, tb_item_cat.updated as tb_item_cat_updated
+    id, parent_id, `name`, `status`, sort_order, is_parent, created, updated
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from tb_item_cat tb_item_cat
-    where tb_item_cat.id = #{id,jdbcType=BIGINT}
+    from tb_item_cat
+    where id = #{id,jdbcType=BIGINT}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from tb_item_cat

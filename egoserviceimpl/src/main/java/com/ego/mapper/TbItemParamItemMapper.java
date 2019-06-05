@@ -3,19 +3,9 @@ package com.ego.mapper;
 import com.ego.pojo.TbItemParamItem;
 import org.springframework.stereotype.Repository;
 
+/**
+ * TbItemParamItemMapper继承基类
+ */
 @Repository
-public interface TbItemParamItemMapper {
-    int deleteByPrimaryKey(Long id);
-
-    int insert(TbItemParamItem record);
-
-    int insertSelective(TbItemParamItem record);
-
-    TbItemParamItem selectByPrimaryKey(Long id);
-
-    int updateByPrimaryKeySelective(TbItemParamItem record);
-
-    int updateByPrimaryKeyWithBLOBs(TbItemParamItem record);
-
-    int updateByPrimaryKey(TbItemParamItem record);
+public interface TbItemParamItemMapper extends MyBatisBaseDao<TbItemParamItem, Long> {
 }

@@ -2,24 +2,22 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ego.mapper.TbUserMapper">
   <resultMap id="BaseResultMap" type="com.ego.pojo.TbUser">
-    <id column="tb_user_id" jdbcType="BIGINT" property="id" />
-    <result column="tb_user_username" jdbcType="VARCHAR" property="username" />
-    <result column="tb_user_password" jdbcType="VARCHAR" property="password" />
-    <result column="tb_user_phone" jdbcType="VARCHAR" property="phone" />
-    <result column="tb_user_email" jdbcType="VARCHAR" property="email" />
-    <result column="tb_user_created" jdbcType="TIMESTAMP" property="created" />
-    <result column="tb_user_updated" jdbcType="TIMESTAMP" property="updated" />
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="created" jdbcType="TIMESTAMP" property="created" />
+    <result column="updated" jdbcType="TIMESTAMP" property="updated" />
   </resultMap>
   <sql id="Base_Column_List">
-    tb_user.id as tb_user_id, tb_user.username as tb_user_username, tb_user.`password` as `tb_user_password`, 
-    tb_user.phone as tb_user_phone, tb_user.email as tb_user_email, tb_user.created as tb_user_created, 
-    tb_user.updated as tb_user_updated
+    id, username, `password`, phone, email, created, updated
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from tb_user tb_user
-    where tb_user.id = #{id,jdbcType=BIGINT}
+    from tb_user
+    where id = #{id,jdbcType=BIGINT}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from tb_user

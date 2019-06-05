@@ -2,31 +2,27 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ego.mapper.TbOrderShippingMapper">
   <resultMap id="BaseResultMap" type="com.ego.pojo.TbOrderShipping">
-    <id column="tb_order_shipping_order_id" jdbcType="VARCHAR" property="orderId" />
-    <result column="tb_order_shipping_receiver_name" jdbcType="VARCHAR" property="receiverName" />
-    <result column="tb_order_shipping_receiver_phone" jdbcType="VARCHAR" property="receiverPhone" />
-    <result column="tb_order_shipping_receiver_mobile" jdbcType="VARCHAR" property="receiverMobile" />
-    <result column="tb_order_shipping_receiver_state" jdbcType="VARCHAR" property="receiverState" />
-    <result column="tb_order_shipping_receiver_city" jdbcType="VARCHAR" property="receiverCity" />
-    <result column="tb_order_shipping_receiver_district" jdbcType="VARCHAR" property="receiverDistrict" />
-    <result column="tb_order_shipping_receiver_address" jdbcType="VARCHAR" property="receiverAddress" />
-    <result column="tb_order_shipping_receiver_zip" jdbcType="VARCHAR" property="receiverZip" />
-    <result column="tb_order_shipping_created" jdbcType="TIMESTAMP" property="created" />
-    <result column="tb_order_shipping_updated" jdbcType="TIMESTAMP" property="updated" />
+    <id column="order_id" jdbcType="VARCHAR" property="orderId" />
+    <result column="receiver_name" jdbcType="VARCHAR" property="receiverName" />
+    <result column="receiver_phone" jdbcType="VARCHAR" property="receiverPhone" />
+    <result column="receiver_mobile" jdbcType="VARCHAR" property="receiverMobile" />
+    <result column="receiver_state" jdbcType="VARCHAR" property="receiverState" />
+    <result column="receiver_city" jdbcType="VARCHAR" property="receiverCity" />
+    <result column="receiver_district" jdbcType="VARCHAR" property="receiverDistrict" />
+    <result column="receiver_address" jdbcType="VARCHAR" property="receiverAddress" />
+    <result column="receiver_zip" jdbcType="VARCHAR" property="receiverZip" />
+    <result column="created" jdbcType="TIMESTAMP" property="created" />
+    <result column="updated" jdbcType="TIMESTAMP" property="updated" />
   </resultMap>
   <sql id="Base_Column_List">
-    tb_order_shipping.order_id as tb_order_shipping_order_id, tb_order_shipping.receiver_name as tb_order_shipping_receiver_name, 
-    tb_order_shipping.receiver_phone as tb_order_shipping_receiver_phone, tb_order_shipping.receiver_mobile as tb_order_shipping_receiver_mobile, 
-    tb_order_shipping.receiver_state as tb_order_shipping_receiver_state, tb_order_shipping.receiver_city as tb_order_shipping_receiver_city, 
-    tb_order_shipping.receiver_district as tb_order_shipping_receiver_district, tb_order_shipping.receiver_address as tb_order_shipping_receiver_address, 
-    tb_order_shipping.receiver_zip as tb_order_shipping_receiver_zip, tb_order_shipping.created as tb_order_shipping_created, 
-    tb_order_shipping.updated as tb_order_shipping_updated
+    order_id, receiver_name, receiver_phone, receiver_mobile, receiver_state, receiver_city, 
+    receiver_district, receiver_address, receiver_zip, created, updated
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from tb_order_shipping tb_order_shipping
-    where tb_order_shipping.order_id = #{orderId,jdbcType=VARCHAR}
+    from tb_order_shipping
+    where order_id = #{orderId,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from tb_order_shipping

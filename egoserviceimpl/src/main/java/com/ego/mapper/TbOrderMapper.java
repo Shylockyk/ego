@@ -3,17 +3,9 @@ package com.ego.mapper;
 import com.ego.pojo.TbOrder;
 import org.springframework.stereotype.Repository;
 
+/**
+ * TbOrderMapper继承基类
+ */
 @Repository
-public interface TbOrderMapper {
-    int deleteByPrimaryKey(String orderId);
-
-    int insert(TbOrder record);
-
-    int insertSelective(TbOrder record);
-
-    TbOrder selectByPrimaryKey(String orderId);
-
-    int updateByPrimaryKeySelective(TbOrder record);
-
-    int updateByPrimaryKey(TbOrder record);
+public interface TbOrderMapper extends MyBatisBaseDao<TbOrder, String> {
 }
