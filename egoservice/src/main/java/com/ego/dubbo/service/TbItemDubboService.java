@@ -1,6 +1,7 @@
 package com.ego.dubbo.service;
 
 import com.ego.commons.pojo.EasyUIDataGrid;
+import com.ego.pojo.TbItem;
 
 import java.util.List;
 
@@ -17,4 +18,12 @@ public interface TbItemDubboService {
      * @return
      */
     EasyUIDataGrid show(int page, int rows);
+
+
+    /**
+     * 根据id修改商品状态
+     * @param tbItem 被修改的商品
+     * @return
+     */
+    int updateItemStatus(TbItem tbItem);
 }

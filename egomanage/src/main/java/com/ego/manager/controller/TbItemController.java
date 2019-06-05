@@ -2,6 +2,7 @@ package com.ego.manager.controller;
 
 
 import com.ego.commons.pojo.EasyUIDataGrid;
+import com.ego.commons.pojo.EgoResult;
 import com.ego.manager.service.TbItemService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,5 +27,56 @@ public class TbItemController {
     @ResponseBody
     public EasyUIDataGrid list(int page, int rows) {
         return tbItemServiceImpl.show(page, rows);
+    }
+
+
+    @RequestMapping("rest/page/item-edit")
+    public String showItemEdit() {
+        return "item-edit";
+    }
+
+    /**
+     * 商品删除
+     * @param ids
+     * @return
+     */
+    @RequestMapping("rest/item/delete")
+    @ResponseBody
+    public EgoResult delete(String ids) {
+        EgoResult egoResult = new EgoResult();
+        int result = tbItemServiceImpl.update(ids, (byte) 3);
+        if(result == 1)
+            egoResult.setStatus(200);
+        return egoResult;
+    }
+
+    /**
+     * 商品删除
+     * @param ids
+     * @return
+     */
+    @RequestMapping("rest/item/instock")
+    @ResponseBody
+    public EgoResult instock(String ids) {
+        EgoResult egoResult = new EgoResult();
+        int result = tbItemServiceImpl.update(ids, (byte) 2);
+        if(result == 1)
+            egoResult.setStatus(200);
+        return egoResult;
+    }
+
+    /**
+     * 商品删除
+     * @param ids
+     * @return
+     */
+    @RequestMapping("rest/item/reshelf")
+    @ResponseBody
+    public EgoResult reshelf(String ids) {
+        EgoResult egoResult = new EgoResult();
+        int result = tbItemServiceImpl.update(ids, (byte) 1);
+        if(result == 1)
+            egoResult.setStatus(200);
+        return egoResult;
     }
 }
