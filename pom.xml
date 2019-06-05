@@ -57,11 +57,14 @@
         <curator-version>4.0.1</curator-version>
 
         <pageHelper-version>5.1.2</pageHelper-version>
+
+        <ftp-client-version>3.3</ftp-client-version>
    </properties>
     <dependencyManagement>
         <dependencies>
 
-            <!--分页插件-->
+
+           <!--分页插件-->
             <!-- https://mvnrepository.com/artifact/com.github.pagehelper/pagehelper -->
             <dependency>
                 <groupId>com.github.pagehelper</groupId>
@@ -228,7 +231,7 @@
                 <version>${jackson-version}</version>
             </dependency>
 
-            <!--图片上传-->
+            <!--文件上传-->
             <!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
             <!--<dependency>
                 <groupId>commons-io</groupId>
@@ -240,6 +243,14 @@
                 <groupId>commons-fileupload</groupId>
                 <artifactId>commons-fileupload</artifactId>
                 <version>${commons-fileupload-version}</version>
+            </dependency>
+
+            <!-- ftp client依赖-->
+            <!-- https://mvnrepository.com/artifact/commons-net/commons-net -->
+            <dependency>
+                <groupId>commons-net</groupId>
+                <artifactId>commons-net</artifactId>
+                <version>${ftp-client-version}</version>
             </dependency>
 
         </dependencies>
