@@ -12,8 +12,21 @@
     <dubbo:registry address="zookeeper://192.168.109.130:2181" simplified="true" client="curator"/>
 
     <!--注册功能-->
+    <!-- 商品服务 -->
     <dubbo:service interface="com.ego.dubbo.service.TbItemDubboService" ref="tbItemDubboService"/>
     <bean id="tbItemDubboService" class="com.ego.dubbo.service.impl.TbItemDubboServiceImpl"/>
+
+    <!-- 商品类目服务 -->
+    <dubbo:service interface="com.ego.dubbo.service.TbItemCatDubboService" ref="tbItemCatDubboService"/>
+    <bean id="tbItemCatDubboService" class="com.ego.dubbo.service.impl.TbItemCatDubboServiceImpl"/>
+
+    <!-- 商品描述服务 -->
+    <dubbo:service interface="com.ego.dubbo.service.TbItemDescDubboService" ref="tbItemDescDubboService"/>
+    <bean id="tbItemDescDubboService" class="com.ego.dubbo.service.impl.TbItemDescDubboServiceImpl"/>
+
+
+
+
     <!-- 配置调用端口 -->
     <dubbo:protocol name="dubbo" port="20880"/>
 

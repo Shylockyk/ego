@@ -41,7 +41,7 @@
 
     <tx:advice id="interceptor" transaction-manager="txManager">
         <tx:attributes>
-            <tx:method name="ins*"/>
+            <tx:method name="ins*" rollback-for="java.lang.Exception"/> <!-- 不写rollback自己手动抛的异常不会回滚 -->
             <tx:method name="del*"/>
             <tx:method name="upd*"/>
             <tx:method name="sel*" read-only="true"/>

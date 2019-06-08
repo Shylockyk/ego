@@ -3,6 +3,7 @@ package com.ego.manager.service.impl;
 import com.ego.commons.utils.FtpUtil;
 import com.ego.manager.service.PicService;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -14,6 +15,7 @@ import java.util.UUID;
  * @Author: yk
  * @Date: 2019/6/5 21:36
  */
+@Service
 public class PicServiceImpl implements PicService {
 
     @Value("${ftpclient.host}")
@@ -38,7 +40,10 @@ public class PicServiceImpl implements PicService {
     public Map<String, Object> upload(MultipartFile uploadFile) {
 
         Map<String, Object> map = new HashMap<>();
+        map.put("error", 1);
+        map.put("msg", "图片上传失败");
         String oldName = uploadFile.getOriginalFilename();
+        if(oldName == null) return map;
         String fileName = UUID.randomUUID() + oldName.substring(oldName.lastIndexOf("."));
         boolean result = false;
         try {
@@ -49,9 +54,6 @@ public class PicServiceImpl implements PicService {
             if (result) {
                 map.put("error", 0);
                 map.put("url", "http://" + host + ":80" + filePath + fileName);
-            } else {
-                map.put("error", 1);
-                map.put("msg", "图片上传失败");
             }
         }
         return map;

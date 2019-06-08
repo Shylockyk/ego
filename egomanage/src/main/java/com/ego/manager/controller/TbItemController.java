@@ -4,11 +4,19 @@ package com.ego.manager.controller;
 import com.ego.commons.pojo.EasyUIDataGrid;
 import com.ego.commons.pojo.EgoResult;
 import com.ego.manager.service.TbItemService;
+import com.ego.pojo.TbItem;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+
+/**
+ * 商品控制器
+ *
+ * @Author: yk
+ * @Date: 2019/6/5 21:26
+ */
 
 @Controller
 public class TbItemController {
@@ -77,6 +85,31 @@ public class TbItemController {
         int result = tbItemServiceImpl.update(ids, (byte) 1);
         if(result == 1)
             egoResult.setStatus(200);
+        return egoResult;
+    }
+
+    /**
+     * 商品新增
+     * @param tbItem
+     * @param desc
+     * @return
+     */
+    @RequestMapping("item/save")
+    @ResponseBody
+    public EgoResult insert(TbItem tbItem, String desc) {
+        int index = 0;
+        EgoResult egoResult = new EgoResult();
+        try {
+            index = tbItemServiceImpl.save(tbItem, desc);
+            System.out.println(index);
+            if (index == 1) {
+                egoResult.setStatus(200);
+            }
+        } catch (Exception e) {
+//            e.printStackTrace();
+            egoResult.setData(e.getMessage());
+        }
+
         return egoResult;
     }
 }
