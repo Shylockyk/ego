@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://dubbo.apache.org/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://dubbo.apache.org/schema/dubbo http://dubbo.apache.org/schema/dubbo/dubbo.xsd">
+
+
+
+    <!--给当前Provider自定义一个名称-->
+    <dubbo:application name="ego-consumer">
+        <dubbo:parameter key="qos.port" value="33333"/>
+    </dubbo:application>
+
+    <!--<dubbo:config-center address="zookeeper://192.168.56.107:2181"/>-->
+    <!--配置注册中心-->
+    <!--192.168.109.130 172.16.2.128 -->
+    <dubbo:registry address="zookeeper://192.168.109.130:2181" simplified="true" client="curator"/>
+
+    <!--<bean id="dubboServiceImpl" class="com.shylock.service.impl.DemoServiceImpl"/>
+
+    &lt;!&ndash; 注册提供的服务 &ndash;&gt;
+    <dubbo:service interface="com.shylock.service.DemoService" ref="dubboServiceImpl"/>
+
+
+
+    &lt;!&ndash; 配置调用端口 &ndash;&gt;
+    <dubbo:protocol name="dubbo" port="20880"/>-->
+
+    <dubbo:annotation package="com.ego.*.service.impl"/>
+
+</beans>

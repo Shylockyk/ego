@@ -13,6 +13,8 @@
         <module>egoserviceimpl</module>
         <module>egocommons</module>
         <module>egomanage</module>
+        <module>egoportal</module>
+        <module>egoitem</module>
     </modules>
 
     <packaging>pom</packaging>
