@@ -1,11 +1,9 @@
 package com.ego.dubbo.service.impl;
 
-import com.ego.commons.pojo.EasyUIDataGrid;
 import com.ego.dubbo.service.TbItemParamDubboService;
 import com.ego.mapper.TbItemParamMapper;
 import com.ego.pojo.TbItemParam;
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
+import com.ego.pojo.TbItemParamExample;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -37,7 +35,8 @@ public class TbItemParamServiceImpl implements TbItemParamDubboService {
     }*/
 
     public List<TbItemParam> show(int page, int rows) {
-        return tbItemParamMapper.selectAll();
+        TbItemParamExample example = new TbItemParamExample();
+        return tbItemParamMapper.selectByExampleWithBLOBs(example);
     }
 
     @Override
@@ -54,5 +53,10 @@ public class TbItemParamServiceImpl implements TbItemParamDubboService {
             throw new Exception("删除失败，可能是数据已经被更改过！");
         }
 
+    }
+
+    @Override
+    public TbItemParam selectByCarId(long id) {
+        return null;
     }
 }

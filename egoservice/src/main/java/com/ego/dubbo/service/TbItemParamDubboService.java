@@ -1,6 +1,5 @@
 package com.ego.dubbo.service;
 
-import com.ego.commons.pojo.EasyUIDataGrid;
 import com.ego.pojo.TbItemParam;
 
 import java.util.List;
@@ -31,10 +30,17 @@ public interface TbItemParamDubboService {
 
 
     /**
-     * 根据ids删除一个或多个商品规格参数实体
+     * 根据ids删除一个或多个商品规格参数模版
      * @param ids
      * @return
      */
     int deleteByIds(String ids) throws Exception;
 
+
+    /**
+     * 根据规格参数模版的商品类目id查询规格参数，其中商品类目id和规格参数模版id是一对一的
+     * @param id
+     * @return
+     */
+    TbItemParam selectByCarId(long id);
 }

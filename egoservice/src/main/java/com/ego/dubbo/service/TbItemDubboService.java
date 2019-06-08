@@ -1,6 +1,5 @@
 package com.ego.dubbo.service;
 
-import com.ego.commons.pojo.EasyUIDataGrid;
 import com.ego.pojo.TbItem;
 import com.ego.pojo.TbItemDesc;
 

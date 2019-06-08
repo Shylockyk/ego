@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.ego.manager.service.TbItemCatService;
+import com.ego.pojo.TbItemCat;
 import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.stereotype.Service;
 
 import com.ego.commons.pojo.EasyUiTree;
 import com.ego.dubbo.service.TbItemCatDubboService;
-import com.ego.pojo.TbItemCat;
 
 @Service
 public class TbItemCatServiceImpl implements TbItemCatService {

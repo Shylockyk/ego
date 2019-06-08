@@ -2,37 +2,151 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ego.mapper.TbContentMapper">
   <resultMap id="BaseResultMap" type="com.ego.pojo.TbContent">
-    <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="category_id" jdbcType="BIGINT" property="categoryId" />
-    <result column="title" jdbcType="VARCHAR" property="title" />
-    <result column="sub_title" jdbcType="VARCHAR" property="subTitle" />
-    <result column="title_desc" jdbcType="VARCHAR" property="titleDesc" />
-    <result column="url" jdbcType="VARCHAR" property="url" />
-    <result column="pic" jdbcType="VARCHAR" property="pic" />
-    <result column="pic2" jdbcType="VARCHAR" property="pic2" />
-    <result column="created" jdbcType="TIMESTAMP" property="created" />
-    <result column="updated" jdbcType="TIMESTAMP" property="updated" />
+    <id column="tb_content_id" jdbcType="BIGINT" property="id" />
+    <result column="tb_content_category_id" jdbcType="BIGINT" property="categoryId" />
+    <result column="tb_content_title" jdbcType="VARCHAR" property="title" />
+    <result column="tb_content_sub_title" jdbcType="VARCHAR" property="subTitle" />
+    <result column="tb_content_title_desc" jdbcType="VARCHAR" property="titleDesc" />
+    <result column="tb_content_url" jdbcType="VARCHAR" property="url" />
+    <result column="tb_content_pic" jdbcType="VARCHAR" property="pic" />
+    <result column="tb_content_pic2" jdbcType="VARCHAR" property="pic2" />
+    <result column="tb_content_created" jdbcType="TIMESTAMP" property="created" />
+    <result column="tb_content_updated" jdbcType="TIMESTAMP" property="updated" />
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.ego.pojo.TbContent">
-    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+    <result column="tb_content_content" jdbcType="LONGVARCHAR" property="content" />
   </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
   <sql id="Base_Column_List">
-    id, category_id, title, sub_title, title_desc, url, pic, pic2, created, updated
+    tb_content.id as tb_content_id, tb_content.category_id as tb_content_category_id, 
+    tb_content.title as tb_content_title, tb_content.sub_title as tb_content_sub_title, 
+    tb_content.title_desc as tb_content_title_desc, tb_content.url as tb_content_url, 
+    tb_content.pic as tb_content_pic, tb_content.pic2 as tb_content_pic2, tb_content.created as tb_content_created, 
+    tb_content.updated as tb_content_updated
   </sql>
   <sql id="Blob_Column_List">
-    content
+    tb_content.content as tb_content_content
   </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.ego.pojo.TbContentExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from tb_content tb_content
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null">
+      <if test="offset != null">
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null">
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.ego.pojo.TbContentExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_content tb_content
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null">
+      <if test="offset != null">
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null">
+        limit ${limit}
+      </if>
+    </if>
+  </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
     select 
     <include refid="Base_Column_List" />
     ,
     <include refid="Blob_Column_List" />
-    from tb_content
-    where id = #{id,jdbcType=BIGINT}
+    from tb_content tb_content
+    where tb_content.id = #{id,jdbcType=BIGINT}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from tb_content
     where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ego.pojo.TbContentExample">
+    delete from tb_content tb_content
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
   </delete>
   <insert id="insert" parameterType="com.ego.pojo.TbContent">
     insert into tb_content (id, category_id, title, 
@@ -117,6 +231,86 @@
       </if>
     </trim>
   </insert>
+  <select id="countByExample" parameterType="com.ego.pojo.TbContentExample" resultType="java.lang.Long">
+    select count(*) from tb_content tb_content
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update tb_content tb_content
+    <set>
+      <if test="record.id != null">
+        tb_content.id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.categoryId != null">
+        tb_content.category_id = #{record.categoryId,jdbcType=BIGINT},
+      </if>
+      <if test="record.title != null">
+        tb_content.title = #{record.title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.subTitle != null">
+        tb_content.sub_title = #{record.subTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.titleDesc != null">
+        tb_content.title_desc = #{record.titleDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.url != null">
+        tb_content.url = #{record.url,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pic != null">
+        tb_content.pic = #{record.pic,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pic2 != null">
+        tb_content.pic2 = #{record.pic2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.created != null">
+        tb_content.created = #{record.created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updated != null">
+        tb_content.updated = #{record.updated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.content != null">
+        tb_content.content = #{record.content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update tb_content tb_content
+    set tb_content.id = #{record.id,jdbcType=BIGINT},
+      tb_content.category_id = #{record.categoryId,jdbcType=BIGINT},
+      tb_content.title = #{record.title,jdbcType=VARCHAR},
+      tb_content.sub_title = #{record.subTitle,jdbcType=VARCHAR},
+      tb_content.title_desc = #{record.titleDesc,jdbcType=VARCHAR},
+      tb_content.url = #{record.url,jdbcType=VARCHAR},
+      tb_content.pic = #{record.pic,jdbcType=VARCHAR},
+      tb_content.pic2 = #{record.pic2,jdbcType=VARCHAR},
+      tb_content.created = #{record.created,jdbcType=TIMESTAMP},
+      tb_content.updated = #{record.updated,jdbcType=TIMESTAMP},
+      tb_content.content = #{record.content,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update tb_content tb_content
+    set tb_content.id = #{record.id,jdbcType=BIGINT},
+      tb_content.category_id = #{record.categoryId,jdbcType=BIGINT},
+      tb_content.title = #{record.title,jdbcType=VARCHAR},
+      tb_content.sub_title = #{record.subTitle,jdbcType=VARCHAR},
+      tb_content.title_desc = #{record.titleDesc,jdbcType=VARCHAR},
+      tb_content.url = #{record.url,jdbcType=VARCHAR},
+      tb_content.pic = #{record.pic,jdbcType=VARCHAR},
+      tb_content.pic2 = #{record.pic2,jdbcType=VARCHAR},
+      tb_content.created = #{record.created,jdbcType=TIMESTAMP},
+      tb_content.updated = #{record.updated,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.ego.pojo.TbContent">
     update tb_content
     <set>
