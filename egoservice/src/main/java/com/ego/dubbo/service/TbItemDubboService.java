@@ -2,6 +2,7 @@ package com.ego.dubbo.service;
 
 import com.ego.pojo.TbItem;
 import com.ego.pojo.TbItemDesc;
+import com.ego.pojo.TbItemParamItem;
 
 import java.util.List;
 
@@ -51,5 +52,5 @@ public interface TbItemDubboService {
      * @param tbItemDesc
      * @return
      */
-    int insertTbItemAndDesc(TbItem tbItem, TbItemDesc tbItemDesc) throws Exception;
+    int insertTbItemAndDesc(TbItem tbItem, TbItemDesc tbItemDesc, TbItemParamItem tbItemParamItem) throws Exception;
 }

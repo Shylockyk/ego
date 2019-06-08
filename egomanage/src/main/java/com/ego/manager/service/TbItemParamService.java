@@ -1,6 +1,8 @@
 package com.ego.manager.service;
 
 import com.ego.commons.pojo.EasyUIDataGrid;
+import com.ego.commons.pojo.EgoResult;
+import com.ego.pojo.TbItemParam;
 
 /**
  * 商品规格参数业务层
@@ -25,4 +27,18 @@ public interface TbItemParamService {
      */
     int delete(String ids) throws Exception;
 
+    /**
+     * 根据商品类目id查询规格模版
+     * @param catId
+     * @return
+     */
+    EgoResult findParamByCatId(long catId);
+
+
+    /**
+     * 新增规格模版信息
+     * @param tbItemParam
+     * @return
+     */
+    EgoResult save(TbItemParam tbItemParam);
 }

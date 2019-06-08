@@ -3,7 +3,9 @@ package com.ego.manager.controller;
 import com.ego.commons.pojo.EasyUIDataGrid;
 import com.ego.commons.pojo.EgoResult;
 import com.ego.manager.service.TbItemParamService;
+import com.ego.pojo.TbItemParam;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -48,5 +50,28 @@ public class TbItemParamController {
                 egoResult.setData(((InvocationTargetException)e).getTargetException().getMessage());
         }
         return egoResult;
+    }
+
+    /**
+     * 查询成功才能显示规格参数模版的添加分组功能
+     * @param catId
+     * @return
+     */
+    @RequestMapping("item/param/query/itemcatid/{catId}")
+    @ResponseBody
+    public EgoResult showParam(@PathVariable long catId) {
+        return tbItemParamServiceImpl.findParamByCatId(catId);
+    }
+
+    /**
+     * 添加规格参数模版
+     * @param catId
+     * @return
+     */
+    @RequestMapping("item/param/save/{catId}")
+    @ResponseBody
+    public EgoResult saveParam(@PathVariable long catId, TbItemParam tbItemParam) {
+        tbItemParam.setItemCatId(catId);
+        return tbItemParamServiceImpl.save(tbItemParam);
     }
 }

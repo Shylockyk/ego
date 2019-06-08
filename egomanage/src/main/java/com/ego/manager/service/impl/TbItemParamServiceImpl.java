@@ -1,6 +1,7 @@
 package com.ego.manager.service.impl;
 
 import com.ego.commons.pojo.EasyUIDataGrid;
+import com.ego.commons.pojo.EgoResult;
 import com.ego.dubbo.service.TbItemCatDubboService;
 import com.ego.dubbo.service.TbItemParamDubboService;
 import com.ego.manager.pojo.TbItemParamChild;
@@ -12,6 +13,7 @@ import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -64,4 +66,30 @@ public class TbItemParamServiceImpl implements TbItemParamService {
     public int delete(String ids) throws Exception {
         return tbItemParamDubboServiceImpl.deleteByIds(ids);
     }
+
+    @Override
+    public EgoResult findParamByCatId(long catId) {
+        TbItemParam tbItemParam = tbItemParamDubboServiceImpl.selectByCarId(catId);
+        EgoResult egoResult = new EgoResult();
+        if (tbItemParam != null) {
+            egoResult.setStatus(200);
+            egoResult.setData(tbItemParam);
+        }
+        return egoResult;
+    }
+
+    @Override
+    public EgoResult save(TbItemParam tbItemParam) {
+        Date now = new Date();
+        tbItemParam.setCreated(now);
+        tbItemParam.setUpdated(now);
+        int index = tbItemParamDubboServiceImpl.insertTbItemParam(tbItemParam);
+        EgoResult egoResult = new EgoResult();
+        if (index > 0) {
+            egoResult.setStatus(200);
+        }
+        return egoResult;
+    }
+
+
 }

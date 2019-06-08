@@ -7,6 +7,7 @@ import com.ego.dubbo.service.TbItemDubboService;
 import com.ego.manager.service.TbItemService;
 import com.ego.pojo.TbItem;
 import com.ego.pojo.TbItemDesc;
+import com.ego.pojo.TbItemParamItem;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.apache.dubbo.config.annotation.Reference;
@@ -61,7 +62,7 @@ public class TbItemServiceImpl implements TbItemService {
     }
 
     @Override
-    public int save(TbItem tbItem, String desc) throws Exception {
+    public int save(TbItem tbItem, String desc, String itemParams) throws Exception {
         /*不考虑事务回滚*/
         /*long id = IDUtils.genItemId();
         tbItem.setId(id);
@@ -92,10 +93,16 @@ public class TbItemServiceImpl implements TbItemService {
 
         TbItemDesc itemDesc = new TbItemDesc();
         itemDesc.setItemDesc(desc);
-//        itemDesc.setItemId(id);
+        itemDesc.setItemId(id);
         itemDesc.setCreated(now);
         itemDesc.setUpdated(now);
 
-        return tbItemDubboServiceImpl.insertTbItemAndDesc(tbItem, itemDesc);
+        TbItemParamItem tbItemParamItem = new TbItemParamItem();
+        tbItemParamItem.setCreated(now);
+        tbItemParamItem.setUpdated(now);
+        tbItemParamItem.setItemId(id);
+        tbItemParamItem.setParamData(itemParams);
+
+        return tbItemDubboServiceImpl.insertTbItemAndDesc(tbItem, itemDesc, tbItemParamItem);
     }
 }

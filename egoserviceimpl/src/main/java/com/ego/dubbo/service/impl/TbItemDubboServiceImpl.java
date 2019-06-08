@@ -3,9 +3,12 @@ package com.ego.dubbo.service.impl;
 import com.ego.dubbo.service.TbItemDubboService;
 import com.ego.mapper.TbItemDescMapper;
 import com.ego.mapper.TbItemMapper;
+import com.ego.mapper.TbItemParamItemMapper;
 import com.ego.pojo.TbItem;
 import com.ego.pojo.TbItemDesc;
 import com.ego.pojo.TbItemExample;
+import com.ego.pojo.TbItemParamItem;
+import sun.dc.pr.PRError;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -24,6 +27,9 @@ public class TbItemDubboServiceImpl implements TbItemDubboService {
 
     @Resource
     private TbItemDescMapper tbItemDescMapper;
+
+    @Resource
+    private TbItemParamItemMapper tbItemParamItemMapper;
 
     /*@Override
     public EasyUIDataGrid show(int page, int rows) {
@@ -61,15 +67,16 @@ public class TbItemDubboServiceImpl implements TbItemDubboService {
     }
 
     @Override
-    public int insertTbItemAndDesc(TbItem tbItem, TbItemDesc tbItemDesc) throws Exception {
+    public int insertTbItemAndDesc(TbItem tbItem, TbItemDesc tbItemDesc, TbItemParamItem tbItemParamItem) throws Exception {
         int index = 0;
         try {
             index = tbItemMapper.insertSelective(tbItem);
             index += tbItemDescMapper.insertSelective(tbItemDesc);
+            index += tbItemParamItemMapper.insertSelective(tbItemParamItem);
         } catch (Exception e) {
 //            e.printStackTrace();
         }
-        if (index == 2) {
+        if (index == 3) {
             return 1;
         } else {
             System.out.println("执行抛出");

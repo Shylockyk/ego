@@ -43,4 +43,12 @@ public interface TbItemParamDubboService {
      * @return
      */
     TbItemParam selectByCarId(long id);
+
+
+    /**
+     * 添加新的规格参数模版，支持主键自增
+     * @param tbItemParam
+     * @return
+     */
+    int insertTbItemParam(TbItemParam tbItemParam);
 }
