@@ -8,7 +8,6 @@ import com.ego.pojo.TbItem;
 import com.ego.pojo.TbItemDesc;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -28,7 +27,7 @@ public class TbItemDubboServiceImpl implements TbItemDubboService {
     @Resource
     private TbItemDescMapper tbItemDescMapper;
 
-    @Override
+    /*@Override
     public EasyUIDataGrid show(int page, int rows) {
 
         // 分页代码
@@ -46,6 +45,11 @@ public class TbItemDubboServiceImpl implements TbItemDubboService {
         dataGrid.setTotal(pageInfo.getTotal());
 
         return dataGrid;
+    }*/
+
+    @Override
+    public List<TbItem> show(int page, int rows) {
+        return tbItemMapper.selectAll();
     }
 
     @Override
@@ -65,12 +69,12 @@ public class TbItemDubboServiceImpl implements TbItemDubboService {
             index = tbItemMapper.insertSelective(tbItem);
             index += tbItemDescMapper.insertSelective(tbItemDesc);
         } catch (Exception e) {
-            e.printStackTrace();
+//            e.printStackTrace();
         }
-//        System.out.println(index);
         if (index == 2) {
             return 1;
         } else {
+            System.out.println("执行抛出");
             throw new Exception("新增失败,业务回滚");
         }
     }

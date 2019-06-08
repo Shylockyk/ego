@@ -7,10 +7,13 @@ import com.ego.dubbo.service.TbItemDubboService;
 import com.ego.manager.service.TbItemService;
 import com.ego.pojo.TbItem;
 import com.ego.pojo.TbItemDesc;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 
 @Service
@@ -24,7 +27,21 @@ public class TbItemServiceImpl implements TbItemService {
 
     @Override
     public EasyUIDataGrid show(int page, int rows) {
-        return tbItemDubboServiceImpl.show(page, rows);
+        // 分页代码
+        // 设置分页条件
+        PageHelper.startPage(page, rows);
+        // 查询全部
+        List<TbItem> tbItemList = tbItemDubboServiceImpl.show(page, rows);
+
+
+        // 放入到实体类
+        PageInfo<TbItem> pageInfo = new PageInfo<>(tbItemList);
+
+        EasyUIDataGrid dataGrid = new EasyUIDataGrid();
+        dataGrid.setRows(pageInfo.getList());
+        dataGrid.setTotal(pageInfo.getTotal());
+
+        return dataGrid;
     }
 
     @Override
@@ -75,7 +92,7 @@ public class TbItemServiceImpl implements TbItemService {
 
         TbItemDesc itemDesc = new TbItemDesc();
         itemDesc.setItemDesc(desc);
-        itemDesc.setItemId(id);
+//        itemDesc.setItemId(id);
         itemDesc.setCreated(now);
         itemDesc.setUpdated(now);
 

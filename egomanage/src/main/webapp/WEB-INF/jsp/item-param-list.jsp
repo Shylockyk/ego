@@ -64,11 +64,15 @@
         	    if (r){
         	    	var params = {"ids":ids};
                 	$.post("/item/param/delete",params, function(data){
-            			if(data.status == 200){
-            				$.messager.alert('提示','删除商品规格成功!',undefined,function(){
-            					$("#itemParamList").datagrid("reload");
-            				});
-            			}
+                        if (data.status == 200) {
+                            $.messager.alert('提示', '删除商品规格成功!', undefined, function () {
+                                $("#itemParamList").datagrid("reload");
+                            });
+                        } else {
+                            $.messager.alert('提示', '删除商品规格失败! <br/> 原因：'+data.data,undefined, function () {
+                                $("#itemParamList").datagrid("reload");
+                            });
+                        }
             		});
         	    }
         	});

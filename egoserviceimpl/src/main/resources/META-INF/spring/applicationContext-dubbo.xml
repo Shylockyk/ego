@@ -24,6 +24,9 @@
     <dubbo:service interface="com.ego.dubbo.service.TbItemDescDubboService" ref="tbItemDescDubboService"/>
     <bean id="tbItemDescDubboService" class="com.ego.dubbo.service.impl.TbItemDescDubboServiceImpl"/>
 
+    <!-- 规格参数服务 -->
+    <dubbo:service interface="com.ego.dubbo.service.TbItemParamDubboService" ref="tbItemParamService"/>
+    <bean id="tbItemParamService" class="com.ego.dubbo.service.impl.TbItemParamServiceImpl"/>
 
 
 

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import java.lang.reflect.InvocationTargetException;
 
 /**
  * 商品控制器
@@ -101,13 +102,15 @@ public class TbItemController {
         EgoResult egoResult = new EgoResult();
         try {
             index = tbItemServiceImpl.save(tbItem, desc);
-            System.out.println(index);
+//            System.out.println(index);
             if (index == 1) {
                 egoResult.setStatus(200);
             }
         } catch (Exception e) {
 //            e.printStackTrace();
-            egoResult.setData(e.getMessage());
+//            System.out.println(e.getMessage());
+            if(e instanceof InvocationTargetException)
+                egoResult.setData(((InvocationTargetException)e).getTargetException().getMessage());
         }
 
         return egoResult;

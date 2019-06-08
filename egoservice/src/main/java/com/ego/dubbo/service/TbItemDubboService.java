@@ -7,6 +7,8 @@ import com.ego.pojo.TbItemDesc;
 import java.util.List;
 
 /**
+ * 商品业务层
+ *
  * @Author: yk
  * @Date: 2019/6/4 21:36
  */
@@ -17,8 +19,16 @@ public interface TbItemDubboService {
      * @param page
      * @param rows
      * @return
+     *//*
+    EasyUIDataGrid show(int page, int rows);*/
+
+    /**
+     * 商品分页查询
+     * @param page
+     * @param rows
+     * @return
      */
-    EasyUIDataGrid show(int page, int rows);
+    List<TbItem> show(int page, int rows);
 
 
     /**
