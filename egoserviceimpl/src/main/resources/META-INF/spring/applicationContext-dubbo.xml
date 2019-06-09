@@ -28,7 +28,13 @@
     <dubbo:service interface="com.ego.dubbo.service.TbItemParamDubboService" ref="tbItemParamService"/>
     <bean id="tbItemParamService" class="com.ego.dubbo.service.impl.TbItemParamServiceImpl"/>
 
+    <!-- 内容分类服务 -->
+    <dubbo:service interface="com.ego.dubbo.service.TbContentCategoryDubboService" ref="tbContentCategoryDubboService"/>
+    <bean id="tbContentCategoryDubboService" class="com.ego.dubbo.service.impl.TbContentCategoryDubboServiceImpl"/>
 
+    <!-- 内容服务 -->
+    <dubbo:service interface="com.ego.dubbo.service.TbContentDubboService" ref="tbContentDubboService"/>
+    <bean id="tbContentDubboService" class="com.ego.dubbo.service.impl.TbContentDubboServiceImpl"/>
 
     <!-- 配置调用端口 -->
     <dubbo:protocol name="dubbo" port="20880"/>

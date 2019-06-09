@@ -1,13 +1,17 @@
 package com.ego.item.service.impl;
 
+import com.ego.commons.utils.JsonUtils;
 import com.ego.dubbo.service.TbItemCatDubboService;
 import com.ego.item.pojo.PortalMenu;
 import com.ego.item.pojo.PortalMenuNode;
 import com.ego.item.service.TbItemCatService;
 import com.ego.pojo.TbItemCat;
+import com.ego.redis.dao.JedisClusterDao;
 import org.apache.dubbo.config.annotation.Reference;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,12 +25,30 @@ public class TbItemCatServiceImpl implements TbItemCatService {
     @Reference
     private TbItemCatDubboService tbItemCatDubboServiceImpl;
 
+    @Value("${redis.portalMenu.key}")
+    private String key;
+
+    @Resource
+    private JedisClusterDao jedisClusterDaoImpl;
+
     @Override
     public PortalMenu showCatMenu() {
+
+        /*先看缓存有没有*/
+        if (jedisClusterDaoImpl.exist(key)) {
+            String value = jedisClusterDaoImpl.get(key);
+            if (value != null && !value.equals("")) {
+                return  JsonUtils.jsonToPojo(value, PortalMenu.class);
+            }
+        }
+
         //查询出所有一级菜单
         List<TbItemCat> tbItemCats = tbItemCatDubboServiceImpl.show(0);
         PortalMenu portalMenu = new PortalMenu();
         portalMenu.setData(selectAllMenu(tbItemCats));
+
+        jedisClusterDaoImpl.set(key, JsonUtils.objectToJson(portalMenu));
+
         return portalMenu;
     }
 

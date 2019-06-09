@@ -14,6 +14,12 @@
 
     <dependencies>
 
+        <dependency>
+            <groupId>com.shylock</groupId>
+            <artifactId>egoredis</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
         <!--阻止报警告,我觉得业务代码应该写在这-->
         <!-- https://mvnrepository.com/artifact/com.github.pagehelper/pagehelper -->
         <dependency>

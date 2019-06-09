@@ -63,6 +63,8 @@ public static boolean uploadFile(String host, int port, String username, String 
 			}
 			//设置上传文件的类型为二进制类型
 			ftp.setFileType(FTP.BINARY_FILE_TYPE);
+			// 每次数据连接之前，ftp client告诉ftp server开通一个端口来传输数据
+			ftp.enterLocalPassiveMode();
 			//上传文件
 			if (!ftp.storeFile(filename, input)) {
 				return result;

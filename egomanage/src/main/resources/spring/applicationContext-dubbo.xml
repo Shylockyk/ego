@@ -7,7 +7,7 @@
 
     <!--给当前Provider自定义一个名称-->
     <dubbo:application name="ego-consumer">
-        <dubbo:parameter key="qos.port" value="33333"/>
+        <dubbo:parameter key="qos.port" value="33335"/>
     </dubbo:application>
 
     <!--<dubbo:config-center address="zookeeper://192.168.56.107:2181"/>-->

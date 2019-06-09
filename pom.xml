@@ -15,6 +15,7 @@
         <module>egomanage</module>
         <module>egoportal</module>
         <module>egoitem</module>
+        <module>egoredis</module>
     </modules>
 
     <packaging>pom</packaging>
@@ -61,11 +62,11 @@
         <pageHelper-version>5.1.2</pageHelper-version>
 
         <ftp-client-version>3.3</ftp-client-version>
+
    </properties>
     <dependencyManagement>
         <dependencies>
-
-
+            
            <!--分页插件-->
             <!-- https://mvnrepository.com/artifact/com.github.pagehelper/pagehelper -->
             <dependency>
