@@ -16,6 +16,7 @@
         <module>egoportal</module>
         <module>egoitem</module>
         <module>egoredis</module>
+        <module>egosearch</module>
     </modules>
 
     <packaging>pom</packaging>
@@ -63,9 +64,17 @@
 
         <ftp-client-version>3.3</ftp-client-version>
 
+        <solrj-version>7.7.1</solrj-version>
    </properties>
     <dependencyManagement>
         <dependencies>
+
+            <!-- solrj -->
+            <dependency>
+                <groupId>org.apache.solr</groupId>
+                <artifactId>solr-solrj</artifactId>
+                <version>${solrj-version}</version>
+            </dependency>
             
            <!--分页插件-->
             <!-- https://mvnrepository.com/artifact/com.github.pagehelper/pagehelper -->

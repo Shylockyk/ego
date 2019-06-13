@@ -1,0 +1,4 @@
+package com.ego.search.service;
+
+public interface TbItemService {
+}

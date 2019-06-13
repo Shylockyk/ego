@@ -16,4 +16,11 @@ public interface TbItemDescDubboService {
      * @return
      */
     int insertDesc(TbItemDesc tbItemDesc);
+
+    /**
+     * 根据id查询描述
+     * @param itemId
+     * @return
+     */
+    TbItemDesc selectByItemId(long itemId);
 }
