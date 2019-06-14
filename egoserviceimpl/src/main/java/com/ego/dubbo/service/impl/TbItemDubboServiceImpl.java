@@ -83,4 +83,9 @@ public class TbItemDubboServiceImpl implements TbItemDubboService {
             throw new Exception("新增失败,业务回滚");
         }
     }
+
+    @Override
+    public TbItem selectById(long id) {
+        return tbItemMapper.selectByPrimaryKey(id);
+    }
 }

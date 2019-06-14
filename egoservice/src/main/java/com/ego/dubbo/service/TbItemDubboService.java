@@ -53,4 +53,11 @@ public interface TbItemDubboService {
      * @return
      */
     int insertTbItemAndDesc(TbItem tbItem, TbItemDesc tbItemDesc, TbItemParamItem tbItemParamItem) throws Exception;
+
+    /**
+     * 根据主键查询
+     * @param id
+     * @return
+     */
+    TbItem selectById(long id);
 }

@@ -26,6 +26,8 @@ public class TbItemController {
     private TbItemService tbItemServiceImpl;
 
 
+
+
     /**
      * 分页显示商品
      * @param page
@@ -60,7 +62,7 @@ public class TbItemController {
     }
 
     /**
-     * 商品删除
+     * 商品下架
      * @param ids
      * @return
      */
@@ -75,7 +77,7 @@ public class TbItemController {
     }
 
     /**
-     * 商品删除
+     * 商品上架
      * @param ids
      * @return
      */

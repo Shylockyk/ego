@@ -28,6 +28,10 @@
     <dubbo:service interface="com.ego.dubbo.service.TbItemParamDubboService" ref="tbItemParamService"/>
     <bean id="tbItemParamService" class="com.ego.dubbo.service.impl.TbItemParamServiceImpl"/>
 
+    <!-- 具体商品规格参数服务 -->
+    <dubbo:service interface="com.ego.dubbo.service.TbItemParamItemDubboService" ref="tbItemParamItemDubboService"/>
+    <bean id="tbItemParamItemDubboService" class="com.ego.dubbo.service.impl.TbItemParamItemDubboServiceImpl"/>
+
     <!-- 内容分类服务 -->
     <dubbo:service interface="com.ego.dubbo.service.TbContentCategoryDubboService" ref="tbContentCategoryDubboService"/>
     <bean id="tbContentCategoryDubboService" class="com.ego.dubbo.service.impl.TbContentCategoryDubboServiceImpl"/>

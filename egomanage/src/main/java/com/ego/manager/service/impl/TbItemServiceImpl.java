@@ -10,12 +10,14 @@ import com.ego.manager.service.TbItemService;
 import com.ego.pojo.TbItem;
 import com.ego.pojo.TbItemDesc;
 import com.ego.pojo.TbItemParamItem;
+import com.ego.redis.dao.JedisClusterDao;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -33,6 +35,12 @@ public class TbItemServiceImpl implements TbItemService {
 
     @Value("${search.url}")
     private String solrAddUrl;
+
+    @Resource
+    private JedisClusterDao jedisClusterDaoImpl;
+
+    @Value(("${redis.itemChild.key}"))
+    private String key;
 
     @Override
     public EasyUIDataGrid show(int page, int rows) {
@@ -63,6 +71,9 @@ public class TbItemServiceImpl implements TbItemService {
             tbItem.setStatus(status);
             tbItemDubboServiceImpl.updateItemStatus(tbItem);
             count++;
+            if (status == 2 || status == 3) {
+                jedisClusterDaoImpl.delete(key + id + ":");
+            }
         }
         if(count == idsStr.length)
             return 1;

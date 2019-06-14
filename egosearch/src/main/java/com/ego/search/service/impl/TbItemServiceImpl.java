@@ -1,9 +1,8 @@
 package com.ego.search.service.impl;
 
+import com.ego.commons.pojo.TbItemChild;
 import com.ego.dubbo.service.TbItemCatDubboService;
 import com.ego.dubbo.service.TbItemDescDubboService;
-import com.ego.pojo.TbItem;
-import com.ego.search.pojo.TbItemChild;
 import com.ego.search.service.TbItemService;
 import org.apache.dubbo.config.annotation.Reference;
 import org.apache.solr.client.solrj.SolrQuery;
