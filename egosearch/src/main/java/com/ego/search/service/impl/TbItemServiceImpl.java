@@ -51,6 +51,9 @@ public class TbItemServiceImpl  implements TbItemService {
         solrQuery.setHighlightSimplePre("<span style='color:red'>");
         solrQuery.setHighlightSimplePost("</span>");
 
+        // 添加排序功能
+//        solrQuery.setSort("item_updated", SolrQuery.ORDER.desc);
+
 
         QueryResponse response = solrClient.query(solrQuery);
         //未高亮内容
