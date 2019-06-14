@@ -1,13 +1,19 @@
 package com.ego.search.service.impl;
 
+import com.ego.dubbo.service.TbItemCatDubboService;
+import com.ego.dubbo.service.TbItemDescDubboService;
+import com.ego.pojo.TbItem;
 import com.ego.search.pojo.TbItemChild;
 import com.ego.search.service.TbItemService;
+import org.apache.dubbo.config.annotation.Reference;
 import org.apache.solr.client.solrj.SolrQuery;
 import org.apache.solr.client.solrj.SolrServerException;
 import org.apache.solr.client.solrj.impl.CloudSolrClient;
 import org.apache.solr.client.solrj.response.QueryResponse;
+import org.apache.solr.client.solrj.response.UpdateResponse;
 import org.apache.solr.common.SolrDocument;
 import org.apache.solr.common.SolrDocumentList;
+import org.apache.solr.common.SolrInputDocument;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -23,6 +29,12 @@ public class TbItemServiceImpl  implements TbItemService {
 
     @Resource
     private CloudSolrClient solrClient;
+
+    @Reference
+    private TbItemCatDubboService tbItemCatDubboServiceImpl;
+
+    @Reference
+    private TbItemDescDubboService tbItemDescDubboServiceImpl;
 
     @Override
     public Map<String, Object> selectByQuery(String query, int page, int rows) throws IOException, SolrServerException {
@@ -74,5 +86,26 @@ public class TbItemServiceImpl  implements TbItemService {
         resultMap.put("totalPages", results.getNumFound() % rows == 0 ? results.getNumFound() / rows : results.getNumFound() / rows + 1);
 
         return resultMap;
+    }
+
+    @Override
+    public int addSolrTbItem(Map<String, Object> map, String desc) throws IOException, SolrServerException {
+
+        SolrInputDocument doc = new SolrInputDocument();
+        doc.setField("id", map.get("id"));
+        doc.setField("item_title", map.get("title"));
+        doc.setField("item_sell_point", map.get("sellPoint"));
+        doc.setField("item_image", map.get("image"));
+        doc.setField("item_price", map.get("price"));
+        doc.setField("cid", map.get("cid"));
+
+        doc.setField("item_category_name", tbItemCatDubboServiceImpl.findById((Integer)(map.get("cid"))).getName());
+//        doc.setField("item_desc",tbItemDescDubboServiceImpl.selectByItemId(tbItem.getId()).getItemDesc()); 插入事务未提交，根据id查是查不到的
+        doc.setField("item_desc",desc);
+        UpdateResponse updateResponse = solrClient.add(doc);
+        solrClient.commit();
+        if(updateResponse.getStatus() == 0)
+            return 1;
+        return 0;
     }
 }

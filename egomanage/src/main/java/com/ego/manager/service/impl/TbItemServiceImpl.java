@@ -1,7 +1,9 @@
 package com.ego.manager.service.impl;
 
 import com.ego.commons.pojo.EasyUIDataGrid;
+import com.ego.commons.utils.HttpClientUtil;
 import com.ego.commons.utils.IDUtils;
+import com.ego.commons.utils.JsonUtils;
 import com.ego.dubbo.service.TbItemDescDubboService;
 import com.ego.dubbo.service.TbItemDubboService;
 import com.ego.manager.service.TbItemService;
@@ -11,10 +13,13 @@ import com.ego.pojo.TbItemParamItem;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.apache.dubbo.config.annotation.Reference;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 @Service
@@ -25,6 +30,9 @@ public class TbItemServiceImpl implements TbItemService {
 
     @Reference
     private TbItemDescDubboService tbItemDescDubboServiceImpl;
+
+    @Value("${search.url}")
+    private String solrAddUrl;
 
     @Override
     public EasyUIDataGrid show(int page, int rows) {
@@ -103,6 +111,16 @@ public class TbItemServiceImpl implements TbItemService {
         tbItemParamItem.setItemId(id);
         tbItemParamItem.setParamData(itemParams);
 
-        return tbItemDubboServiceImpl.insertTbItemAndDesc(tbItem, itemDesc, tbItemParamItem);
+        // 使用java代码调用solr的控制器
+        int index =  tbItemDubboServiceImpl.insertTbItemAndDesc(tbItem, itemDesc, tbItemParamItem);
+
+        new Thread(()->{
+            Map<String, Object> map = new HashMap<>();
+            map.put("tbItem", tbItem);
+            map.put("desc", desc);
+            HttpClientUtil.doPostJson(solrAddUrl, JsonUtils.objectToJson(map));
+        }).run(); // 不run创建个锤子的线程
+
+        return index;
     }
 }

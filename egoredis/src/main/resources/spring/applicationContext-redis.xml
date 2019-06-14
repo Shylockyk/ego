@@ -7,6 +7,8 @@
 
     <context:component-scan base-package="com.ego.redis.dao.impl"/>
 
+    <context:property-placeholder location="classpath:redis.properties"/>
+
     <!-- 配置jedis连接池 -->
     <bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
         <!-- 最大连接数 -->
@@ -37,27 +39,27 @@
         <constructor-arg name="nodes">
             <set>
                 <bean class="redis.clients.jedis.HostAndPort">
-                    <constructor-arg name="host" value="192.168.56.103"/>
+                    <constructor-arg name="host" value="${redis.cluster.url}"/>
                     <constructor-arg name="port" value="7001"/>
                 </bean>
                 <bean class="redis.clients.jedis.HostAndPort">
-                    <constructor-arg name="host" value="192.168.56.103"/>
+                    <constructor-arg name="host" value="${redis.cluster.url}"/>
                     <constructor-arg name="port" value="7002"/>
                 </bean>
                 <bean class="redis.clients.jedis.HostAndPort">
-                    <constructor-arg name="host" value="192.168.56.103"/>
+                    <constructor-arg name="host" value="${redis.cluster.url}"/>
                     <constructor-arg name="port" value="7003"/>
                 </bean>
                 <bean class="redis.clients.jedis.HostAndPort">
-                    <constructor-arg name="host" value="192.168.56.103"/>
+                    <constructor-arg name="host" value="${redis.cluster.url}"/>
                     <constructor-arg name="port" value="7004"/>
                 </bean>
                 <bean class="redis.clients.jedis.HostAndPort">
-                    <constructor-arg name="host" value="192.168.56.103"/>
+                    <constructor-arg name="host" value="${redis.cluster.url}"/>
                     <constructor-arg name="port" value="7005"/>
                 </bean>
                 <bean class="redis.clients.jedis.HostAndPort">
-                    <constructor-arg name="host" value="192.168.56.103"/>
+                    <constructor-arg name="host" value="${redis.cluster.url}"/>
                     <constructor-arg name="port" value="7006"/>
                 </bean>
             </set>

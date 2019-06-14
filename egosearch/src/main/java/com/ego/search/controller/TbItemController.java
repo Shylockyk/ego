@@ -1,15 +1,19 @@
 package com.ego.search.controller;
 
+import com.ego.pojo.TbItem;
 import com.ego.search.service.TbItemService;
 import org.apache.solr.client.solrj.SolrServerException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
@@ -39,6 +43,17 @@ public class TbItemController {
             e.printStackTrace();
         }
         return "search";
+    }
+
+    @RequestMapping("solr/add")
+    @ResponseBody
+    public int addSolrTbItem(@RequestBody Map<String, Object> map) {
+        try {
+            return tbItemServiceImpl.addSolrTbItem((LinkedHashMap) map.get("tbItem"), map.get("desc").toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
     }
 
 }

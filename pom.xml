@@ -24,6 +24,7 @@
     <name>egoparent Maven Webapp</name>
     <url>http://www.example.com</url>
 
+    <!-- 即使有，也要控制版本 -->
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
@@ -65,9 +66,18 @@
         <ftp-client-version>3.3</ftp-client-version>
 
         <solrj-version>7.7.1</solrj-version>
+
+        <httpclient-version>4.5.6</httpclient-version>
    </properties>
     <dependencyManagement>
         <dependencies>
+
+            <!-- httpclient -->
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpclient</artifactId>
+                <version>${httpclient-version}</version>
+            </dependency>
 
             <!-- solrj -->
             <dependency>
