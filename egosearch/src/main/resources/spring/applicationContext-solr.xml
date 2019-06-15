@@ -11,9 +11,9 @@
         <bean id="builder" class="org.apache.solr.client.solrj.impl.CloudSolrClient.Builder">
             <constructor-arg index="0" name="zkHosts">
                 <list>
-                    <value>172.16.2.128:2181</value>
-                    <value>172.16.2.128:2182</value>
-                    <value>172.16.2.128:2183</value>
+                    <value>${solr.zookeeper.host1}</value>
+                    <value>${solr.zookeeper.host2}</value>
+                    <value>${solr.zookeeper.host3}</value>
                 </list>
             </constructor-arg>
             <constructor-arg index="1" name="zkChroot" ref="optional"/>

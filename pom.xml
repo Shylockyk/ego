@@ -17,6 +17,7 @@
         <module>egoitem</module>
         <module>egoredis</module>
         <module>egosearch</module>
+        <module>egopassport</module>
     </modules>
 
     <packaging>pom</packaging>

@@ -1,6 +1,7 @@
 var TT = EGOU = {
 	checkLogin : function(){
 		var _ticket = $.cookie("TT_TOKEN");
+		// alert(_ticket);
 		if(!_ticket){
 			return ;
 		}

@@ -9,7 +9,7 @@
     <!--<dubbo:config-center address="zookeeper://192.168.56.107:2181"/>-->
     <!--配置注册中心-->
     <!--192.168.109.130 172.16.2.128 -->
-    <dubbo:registry address="${dubbo.url}" simplified="true" client="curator"/>
+    <dubbo:registry address="${dubbo.url}" simplified="true" client="curator" port="2183"/>
 
     <!--注册功能-->
     <!-- 商品服务 -->
@@ -39,6 +39,10 @@
     <!-- 内容服务 -->
     <dubbo:service interface="com.ego.dubbo.service.TbContentDubboService" ref="tbContentDubboService"/>
     <bean id="tbContentDubboService" class="com.ego.dubbo.service.impl.TbContentDubboServiceImpl"/>
+
+    <!-- 用户服务 -->
+    <dubbo:service interface="com.ego.dubbo.service.TbUserDubboService" ref="tbUserDubboService"/>
+    <bean id="tbUserDubboService" class="com.ego.dubbo.service.impl.TbUserDubboServiceImpl"/>
 
     <!-- 配置调用端口 -->
     <dubbo:protocol name="dubbo" port="20880"/>
