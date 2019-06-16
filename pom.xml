@@ -18,6 +18,7 @@
         <module>egoredis</module>
         <module>egosearch</module>
         <module>egopassport</module>
+        <module>egocart</module>
     </modules>
 
     <packaging>pom</packaging>

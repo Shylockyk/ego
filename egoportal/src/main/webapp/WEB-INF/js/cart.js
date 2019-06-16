@@ -39,7 +39,8 @@ var TTCart = {
 			 thousandsSeparator: ',',
 			 centsLimit: 2
 		});
-	}
+	},
+
 };
 
 $(function(){

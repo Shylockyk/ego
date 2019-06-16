@@ -33,8 +33,18 @@ public class TbUserController {
      * @return
      */
     @RequestMapping("user/showLogin")
-    public String showLogin(@RequestHeader("Referer") String redirectUrl, Model model) {
+    public String showLogin(@RequestHeader(value = "Referer", defaultValue = "") String redirectUrl, Model model,Integer isCart, String interurl) {
+        if (isCart != null && isCart == 1) {
+            redirectUrl = redirectUrl.substring(redirectUrl.lastIndexOf("/") + 1);
+            redirectUrl = "http://localhost:8085/cart/add/" + redirectUrl + "?num=1";
+        }
         model.addAttribute("redirect", redirectUrl);
+        /* 如果请求头没有referer使用下面的代码
+        if (redirectUrl.equals("")) {
+            model.addAttribute("redirect", interurl);
+        } else {
+            model.addAttribute("redirect", redirectUrl);
+        } */
         return "login";
     }
 
