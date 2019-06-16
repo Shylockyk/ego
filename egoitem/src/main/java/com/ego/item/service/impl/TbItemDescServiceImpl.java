@@ -33,6 +33,7 @@ public class TbItemDescServiceImpl implements TbItemDescService {
         }
 
         String itemDesc = tbItemDescDubboServiceImpl.selectByItemId(itemId).getItemDesc();
+        if(itemDesc == null) itemDesc = "";
         jedisClusterDaoImpl.set(itemKey, itemDesc);
         return itemDesc;
     }

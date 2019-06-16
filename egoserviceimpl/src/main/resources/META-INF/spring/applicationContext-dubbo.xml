@@ -44,6 +44,10 @@
     <dubbo:service interface="com.ego.dubbo.service.TbUserDubboService" ref="tbUserDubboService"/>
     <bean id="tbUserDubboService" class="com.ego.dubbo.service.impl.TbUserDubboServiceImpl"/>
 
+    <!-- 订单服务 -->
+    <dubbo:service interface="com.ego.dubbo.service.TbOrderDubboService" ref="tbOrderDubboService"/>
+    <bean id="tbOrderDubboService" class="com.ego.dubbo.service.impl.TbOrderDubboServiceImpl"/>
+
     <!-- 配置调用端口 -->
     <dubbo:protocol name="dubbo" port="20880"/>
 

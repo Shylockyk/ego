@@ -19,6 +19,7 @@
         <module>egosearch</module>
         <module>egopassport</module>
         <module>egocart</module>
+        <module>egoorder</module>
     </modules>
 
     <packaging>pom</packaging>
